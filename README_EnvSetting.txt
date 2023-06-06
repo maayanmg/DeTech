@@ -38,6 +38,8 @@ Convert PyQT ui to python source code
 Deep Learning for Detecting Pneumonia from X-ray Images
 > https://www.kaggle.com/code/amyjang/tensorflow-pneumonia-classification-on-x-rays
 > https://towardsdatascience.com/deep-learning-for-detecting-pneumonia-from-x-ray-images-fc9a3d9fdba8
+
+This the project we are baseed on
 > https://towardsdatascience.com/pneumonia-detection-with-keras-and-fastapi-6c10dab657e0
 
 fastai book
@@ -49,3 +51,17 @@ dataset Chest X-Ray Images (Pneumonia)
 keras 
 > https://www.tutorialspoint.com/keras/index.htm
 > https://keras.io/api/models/model/
+
+GitHub that uses FastAPI and router lets access the module (the one we cloned)
+> https://github.com/happilyeverafter95/pneumonia-detection
+
+FastAPI Guide
+> https://reshetech.co.il/python-tutorials/fastapi-probably-the-best-python-web-framework
+
+FastAPI: The simplest FastAPI file could look like this
+> https://fastapi.tiangolo.com/tutorial/first-steps/
+
+TensorFlow
+> https://www.tensorflow.org/api_docs/python/tf/Graph
+> https://www.tensorflow.org/guide/intro_to_graphs?hl=he
+> https://analyticsindiamag.com/a-complete-understanding-of-dense-layers-in-neural-networks/

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5983caf6-4f89-422e-97fb-a2112b93dbb4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app_code/app_config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/app_code/app_config.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app_code/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_code/db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app_code/detection_stats.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_code/statistical_analysis_Dialog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app_code/enc_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_code/enc_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app_code/enc_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_code/enc_server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app_code/login1.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_code/login_Dialog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app_code/main_win.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_code/main_win.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app_code/progress_bar.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_code/progress_bar.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app_code/report_case.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_code/report_a_visit_Dialog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app_code/results_win.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_code/results_Dialog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app_code/sendCurl.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_code/send_curl.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app_code/sign_up1.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_code/sign_up_Dialog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app_code/user_details.db" beforeDir="false" afterPath="$PROJECT_DIR$/app_code/user_details.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements_venv.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements_venv.txt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2NNgpZRuPwnZqHjkND0gjat7nHk" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app_code" />
+  </component>
+  <component name="RunManager" selected="Python.enc_client">
+    <configuration name="enc_client" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\mgmaa\AppData\Local\Programs\Python\Python310\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/app_code" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app_code/enc_client.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="enc_server" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\mgmaa\AppData\Local\Programs\Python\Python310\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/app_code" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app_code/enc_server.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="sendCurl" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="pneumonia-detection" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\mgmaa\AppData\Local\Programs\Python\Python310\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/classifier" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/classifier/sendCurl.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.enc_client" />
+        <item itemvalue="Python.enc_server" />
+        <item itemvalue="Python.sendCurl" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5983caf6-4f89-422e-97fb-a2112b93dbb4" name="Changes" comment="" />
+      <created>1679510136468</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1679510136468</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app_code/enc_client.py</url>
+          <line>114</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app_code/send_curl.py</url>
+          <line>21</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app_code/db.py</url>
+          <line>69</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app_code/report_a_visit_Dialog.py</url>
+          <line>404</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app_code/enc_server.py</url>
+          <line>77</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

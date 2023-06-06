@@ -1,0 +1,121 @@
+Folder PATH listing
+Volume serial number is BA33-1B14
+D:.
+|   .dockerignore
+|   .envrc.example
+|   .gitignore
+|   Dockerfile
+|   README.md
+|   README_EnvSetting.txt
+|   requirements.txt
+|   requirements_venv.txt
+|   requirements_venv.txt.orig
+|   tree.txt
+|   
++---.idea
+|   |   vcs.xml
+|   |   workspace.xml
+|   |   
+|   \---inspectionProfiles
+|           Project_Default.xml
+|           
++---app_code
+|   |   AI2.png
+|   |   ai_human.png
+|   |   app_config.ini
+|   |   books.png
+|   |   books3.png
+|   |   cacert.pem
+|   |   config.py
+|   |   datePicker.py
+|   |   db.py
+|   |   enc_client.py
+|   |   enc_server.py
+|   |   localhost.pem
+|   |   login_Dialog.py
+|   |   logo1.png
+|   |   main_logo.png
+|   |   main_win.py
+|   |   pic_2.png
+|   |   progress_bar.py
+|   |   progress_bar.ui
+|   |   report_a_visit_Dialog.py
+|   |   results_Dialog.py
+|   |   results_logo.png
+|   |   send_curl.py
+|   |   sign_up_Dialog.py
+|   |   statistical_analysis_Dialog.py
+|   |   user_details.db
+|   |   user_details.db-journal
+|   |   xray1.png
+|   |   x_ray.png
+|   |   
+|   +---.idea
+|   |   |   .gitignore
+|   |   |   app_code.iml
+|   |   |   misc.xml
+|   |   |   modules.xml
+|   |   |   vcs.xml
+|   |   |   workspace.xml
+|   |   |   
+|   |   \---inspectionProfiles
+|   |           profiles_settings.xml
+|   |           Project_Default.xml
+|   |           
+|   +---x_ray_stats
+|   |       123456789.jpeg
+|   |       135792468.jpeg
+|   |       137895426.jpeg
+|   |       178592364.jpeg
+|   |       218574936.jpeg
+|   |       246813579.jpeg
+|   |       369258147.jpeg
+|   |       376429815.jpeg
+|   |       397581426.jpeg
+|   |       426985713.jpeg
+|   |       439518276.jpeg
+|   |       531246897.jpeg
+|   |       593827416.jpeg
+|   |       614279853.jpeg
+|   |       784512963.jpeg
+|   |       872149635.jpeg
+|   |       921375486.jpeg
+|   |       937461258.jpeg
+|   |       975318642.jpeg
+|   |       987654321.jpeg
+|   |       
+|   \---__pycache__
+|           config.cpython-310.pyc
+|           db.cpython-310.pyc
+|           enc_client.cpython-310.pyc
+|           login_Dialog.cpython-310.pyc
+|           main_win.cpython-310.pyc
+|           progress_bar.cpython-310.pyc
+|           report_a_visit_Dialog.cpython-310.pyc
+|           results_Dialog.cpython-310.pyc
+|           send_curl.cpython-310.pyc
+|           sign_up_Dialog.cpython-310.pyc
+|           statistical_analysis_Dialog.cpython-310.pyc
+|           
++---classifier
+|   |   app.py
+|   |   sendCurl.py
+|   |   train.py
+|   |   
+|   +---models
+|   |       weights.h5
+|   |       
+|   +---routers
+|   |       pneumonia_router.py
+|   |       
+|   \---__pycache__
+|           train.cpython-37.pyc
+|           
+\---fixtures
+        pneumonia_1.jpeg
+        pneumonia_2.jpeg
+        pneumonia_3.jpeg
+        test_normal_1.jpeg
+        test_normal_2.jpeg
+        test_normal_3.jpeg
+        

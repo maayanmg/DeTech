@@ -11,7 +11,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-class Train:
+class AI_model:
     def __init__(self, force_download=False):
         self.force_download = force_download
         self.data_path = os.path.join(os.getcwd(), 'classifier\\data\\')
@@ -22,7 +22,8 @@ class Train:
         self.train: ImageDataGenerator
         self.test: ImageDataGenerator
         self.epochs = 5
-
+        
+    #A function that loads the x-ray files.
     def load_data(self):
         #self.download_data()
         train_generator = ImageDataGenerator(rescale=1/255.0)
@@ -54,6 +55,7 @@ class Train:
             with zipfile.ZipFile(os.path.join(self.data_path, 'chest-xray-pneumonia.zip')) as z:
                 z.extractall(self.data_path)
 
+    #A function that defines the AI model. The function returns the model.
     def define_model(self):
         model = Sequential()
         model.add(Conv2D(32, (3, 3), activation='relu', input_shape=(64, 64, 1)))
@@ -66,6 +68,7 @@ class Train:
         model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
         return model
 
+    #A function that trains the model.
     def train_model(self):
         self.load_data()
         steps_per_epoch = self.train.samples // self.train.batch_size
@@ -77,6 +80,7 @@ class Train:
                                  steps_per_epoch=steps_per_epoch,
                                  validation_steps=validation_steps)
 
+    #A function that calls the train_model function and save the new trained model to the directory.
     def deploy_model(self):
         self.train_model()
         loss, acc = self.model.evaluate_generator(self.test,

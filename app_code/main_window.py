@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 # Form implementation generated from reading ui file 'appDate.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.7
@@ -9,18 +10,22 @@ import os
 import webbrowser
 from datetime import date
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QFileDialog, QHeaderView
-import statistical_analysis
+from PyQt5.QtWidgets import QFileDialog, QTableWidgetItem, QHeaderView
+import statistical_analysis_Dialog
 import login_Dialog
 import report_a_visit_Dialog
 import results_Dialog
 import send_curl
 import sign_up_Dialog
+import progress_bar
 
 class Ui_MainWindow(object):
     doctor_id = None
     selected_row = None
-    def setupUi(self, MainWindow, client):
+    the_app_config = None
+    #A function that receives  MainWindow, client, config_parser. The function builds the dialog with its details
+    def setupUi(self, MainWindow, client, config_parser):
+        self.the_app_config = config_parser
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(880, 690)
         MainWindow.setStyleSheet("background-color: rgb(54, 54, 54);")
@@ -29,9 +34,9 @@ class Ui_MainWindow(object):
         self.about_btn = QtWidgets.QPushButton(self.centralwidget)
         self.about_btn.setGeometry(QtCore.QRect(690, 610, 161, 31))
         self.about_btn.setStyleSheet("background-color: rgb(54, 54, 54);\n"
-"color: rgb(255,255,255);\n"
-"font-size: 14pt\n"
-"")
+                                     "color: rgb(255,255,255);\n"
+                                     "font-size: 14pt\n"
+                                     "")
         self.about_btn.setDefault(False)
         self.about_btn.setFlat(False)
         self.about_btn.setObjectName("pushButton_6")
@@ -44,9 +49,9 @@ class Ui_MainWindow(object):
         self.report_a_visit_btn.hide()
         self.report_a_visit_btn.setGeometry(QtCore.QRect(690, 230, 161, 31))
         self.report_a_visit_btn.setStyleSheet("background-color: rgb(54, 54, 54);\n"
-"color: rgb(255,255,255);\n"
-"font-size: 14pt\n"
-"")
+                                              "color: rgb(255,255,255);\n"
+                                              "font-size: 14pt\n"
+                                              "")
         self.report_a_visit_btn.setDefault(False)
         self.report_a_visit_btn.setFlat(False)
         self.report_a_visit_btn.setObjectName("pushButton_5")
@@ -54,23 +59,23 @@ class Ui_MainWindow(object):
         self.x_ray_detection_btn.hide()
         self.x_ray_detection_btn.setGeometry(QtCore.QRect(690, 270, 161, 31))
         self.x_ray_detection_btn.setStyleSheet("background-color: rgb(54, 54, 54);\n"
-"color: rgb(255,255,255);\n"
-"font-size: 14pt\n"
-"")
+                                               "color: rgb(255,255,255);\n"
+                                               "font-size: 14pt\n"
+                                               "")
         self.x_ray_detection_btn.setDefault(False)
         self.x_ray_detection_btn.setFlat(False)
         self.x_ray_detection_btn.setObjectName("pushButton_7")
         self.login_btn = QtWidgets.QPushButton(self.centralwidget)
         self.login_btn.setGeometry(QtCore.QRect(690, 140, 161, 31))
         self.login_btn.setStyleSheet("background-color: rgb(14, 154, 175);\n"
-"color: rgb(255,255,255);\n"
-"font-size: 16pt\n"
-"")
+                                     "color: rgb(255,255,255);\n"
+                                     "font-size: 16pt\n"
+                                     "")
         self.login_btn.setObjectName("pushButton")
         self.DeTech_text = QtWidgets.QLabel(self.centralwidget)
         self.DeTech_text.setGeometry(QtCore.QRect(230, 10, 211, 111))
         self.DeTech_text.setStyleSheet("color: rgb(14, 154, 175);\n"
-"font-size: 42pt ")
+                                       "font-size: 42pt ")
         self.DeTech_text.setObjectName("label_2")
         self.logo_img = QtWidgets.QLabel(self.centralwidget)
         self.logo_img.setGeometry(QtCore.QRect(450, 20, 161, 91))
@@ -80,8 +85,8 @@ class Ui_MainWindow(object):
         self.slogan_text = QtWidgets.QLabel(self.centralwidget)
         self.slogan_text.setGeometry(QtCore.QRect(200, 110, 361, 31))
         self.slogan_text.setStyleSheet("color: rgb(0, 209, 255);\n"
-"font-size: 20pt \n"
-"")
+                                       "font-size: 20pt \n"
+                                       "")
         self.slogan_text.setObjectName("label_6")
         self.x_ray_img = QtWidgets.QLabel(self.centralwidget)
         self.x_ray_img.setGeometry(QtCore.QRect(30, 190, 461, 461))
@@ -96,23 +101,23 @@ class Ui_MainWindow(object):
         self.sign_up_btn = QtWidgets.QPushButton(self.centralwidget)
         self.sign_up_btn.setGeometry(QtCore.QRect(690, 180, 161, 31))
         self.sign_up_btn.setStyleSheet("\n"
-"color: rgb(255,255,255);\n"
-"background-color: rgb(140, 140, 140);\n"
-"font-size: 16pt\n"
-"")
+                                       "color: rgb(255,255,255);\n"
+                                       "background-color: rgb(140, 140, 140);\n"
+                                       "font-size: 16pt\n"
+                                       "")
         self.sign_up_btn.setObjectName("pushButton_4")
         self.log_out_btn = QtWidgets.QPushButton(self.centralwidget)
         self.log_out_btn.setGeometry(QtCore.QRect(690, 190, 161, 31))
         self.log_out_btn.setStyleSheet("background-color: rgb(255, 84, 42);\n"
-                                        "color: rgb(255,255,255);\n"
-                                        "font-size: 16pt\n")
+                                       "color: rgb(255,255,255);\n"
+                                       "font-size: 16pt\n")
         self.log_out_btn.setObjectName("pushButton_2")
         self.log_out_btn.hide()
         self.user_text = QtWidgets.QLabel(self.centralwidget)
         self.user_text.setGeometry(QtCore.QRect(690, 150, 201, 31))
         self.user_text.setStyleSheet("background-color: rgb(54,54,54);\n"
-"color: rgb(255, 255, 255);\n"
-"font: 75 16pt \"MS Shell Dlg 2\";")
+                                     "color: rgb(255, 255, 255);\n"
+                                     "font: 75 16pt \"MS Shell Dlg 2\";")
         self.user_text.setObjectName("user_text")
         self.tableWidget = QtWidgets.QTableWidget(self.centralwidget)
         self.tableWidget.setGeometry(QtCore.QRect(30, 190, 621, 451))
@@ -184,9 +189,9 @@ class Ui_MainWindow(object):
         self.detection_stats_btn.hide()
         self.detection_stats_btn.setGeometry(QtCore.QRect(690, 310, 161, 31))
         self.detection_stats_btn.setStyleSheet("background-color: rgb(54, 54, 54);\n"
-                                        "color: rgb(255,255,255);\n"
-                                        "font-size: 14pt\n"
-                                        "")
+                                               "color: rgb(255,255,255);\n"
+                                               "font-size: 14pt\n"
+                                               "")
         self.detection_stats_btn.setDefault(False)
         self.detection_stats_btn.setFlat(False)
         self.detection_stats_btn.setObjectName("pushButton_8")
@@ -195,7 +200,7 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         self.login_btn.clicked.connect(lambda: self.open_login_Dialog(client))
         self.sign_up_btn.clicked.connect(lambda: self.open_sign_up_Dialog(client))
-        self.x_ray_detection_btn.clicked.connect(lambda: self.select_photo_and_send_curl())
+        self.x_ray_detection_btn.clicked.connect(lambda: self.select_photo_and_send_curl(client))
         self.report_a_visit_btn.clicked.connect(lambda: self.open_report_a_visit_Dialog(client))
         self.tableWidget.selectionModel().selectionChanged.connect(self.selected_row)
         self.tableWidget.doubleClicked.connect(lambda: self.watch_patient_datails(client))
@@ -203,7 +208,7 @@ class Ui_MainWindow(object):
         self.about_btn.clicked.connect(lambda: self.open_project_book())
         self.detection_stats_btn.clicked.connect(lambda: self.open_statistical_analysis_Dialog(client))
 
-    #The function opens the project book from a url.
+    #The function opens the project book from a URL.
     def open_project_book(self):
         webbrowser.open("https://docs.google.com/document/d/1xoxYSfxPT1LbkVRRw4hjJANpfWASCB1bWV0eGYCthco/edit?usp=sharing")
 
@@ -216,7 +221,7 @@ class Ui_MainWindow(object):
     def watch_patient_datails(self, client):
         patient_id = self.tableWidget.item(self.selected_row, 1).text()
         self.dialog = QtWidgets.QDialog()
-        self.ui = report_a_visit_Dialog.Ui_Report_a_visit()
+        self.ui = report_a_visit_Dialog.Ui_Report_a_visit_Dialog()
         self.ui.setupUi(self.dialog, client, self, self.doctor_id)
         self.ui.turn_into_show_patient_mode(client, patient_id)
         self.dialog.show()
@@ -224,14 +229,14 @@ class Ui_MainWindow(object):
     #A function that receives a client. The function opens the login dialog
     def open_login_Dialog(self, client):
         self.dialog = QtWidgets.QDialog()
-        self.ui = login_Dialog.Ui_Login()
+        self.ui = login_Dialog.Ui_Login_Dialog()
         self.ui.setupUi(self.dialog, client, self)
         self.dialog.show()
 
     #A function that receives a client. The function opens the sign up dialog
     def open_sign_up_Dialog(self, client):
         self.dialog = QtWidgets.QDialog()
-        self.ui = sign_up_Dialog.Ui_Sign_up()
+        self.ui = sign_up_Dialog.Ui_Sign_up_Dialog()
         self.ui.setupUi(self.dialog, client, self)
         self.dialog.show()
 
@@ -265,7 +270,7 @@ class Ui_MainWindow(object):
                 table.insertRow(table.rowCount())
                 rowCount = table.rowCount()
                 columnCount = table.columnCount()
-                for j in range(columnCount-1):
+                for j in range(columnCount - 1):
                     table.setItem(rowCount - 1, j, QtWidgets.QTableWidgetItem(row[j]))
                 age = self.calculate_age(row[4])
                 table.setItem(rowCount - 1, 3, QtWidgets.QTableWidgetItem(str(age)))
@@ -273,35 +278,30 @@ class Ui_MainWindow(object):
                 pass
         self.tableWidget.setSortingEnabled(True)
 
-    #A function that cleat the table widget. Row number becomes 0 and contents are empty.
+    #A function that clears the table widget. The row number becomes 0 and the contents are empty.
     def clear_table(self):
         self.tableWidget.clearContents()
         self.tableWidget.setRowCount(0)
 
-    #A function that receives birth date and calculate the age of the person. Returns the age.
+    #A function that receives birth date and calculates the age of the person. Returns the age.
     def calculate_age(self, birth_date):
         today = date.today()
         spllited_birth_date = birth_date.split('-')
         age = today.year - int(spllited_birth_date[0]) -((today.month, today.day) <(int(spllited_birth_date[1]), int(spllited_birth_date[2])))
         return age
 
-    #A function that ask the user to choose x-ray photo from the computer(using another fumction) and then the function sends it to the web server. In the end (if everything went well) the function open the results Dialog with the detection of the x-ray (using another function).
-    def select_photo_and_send_curl(self):
+    # A function that asks the user to choose an x-ray photo from the computer(using another function) and then the function sends it to the web server. In the end (if everything went well) the function opens the results Dialog with the detection of the x-ray (using another function).
+    def select_photo_and_send_curl(self, client):
         photo_path = self.get_file_name()
         if photo_path == '':
             return
-        try:
-            chance = send_curl.send_curl(photo_path)
-            if chance != '':
-                split_chance = chance.split()
-                is_pneu = True
-                if split_chance[0] == 'normal':
-                    is_pneu = False
-                self.open_results_Dialog(is_pneu)
-        except:
-            None
+        inParamsTuple = (photo_path,True)
+        self.workDlg = QtWidgets.QDialog()
+        self.ui = progress_bar.Worker_Dialog(self.workDlg)
+        self.ui.setupUi(self.workDlg, client, send_curl.send_curl, inParamsTuple, self.after_send_curl)
+        self.workDlg.show()
 
-    # A function that ask the user to choose x-ray photo from the computer. The function allows only 'jpeg' files. The function returns the file location.
+    # A function that asks the user to choose an x-ray photo from the computer. The function allows only 'jpeg' files. The function returns the file location.
     def get_file_name(self):
         file_filter = 'Data File (*.jpeg)'
         response = QFileDialog.getOpenFileName(
@@ -313,22 +313,39 @@ class Ui_MainWindow(object):
         print(response)
         return response[0]
 
-    # A function that receives a client and a detection of an x-ray. The function opens the results dialog in accordance to the detection.
-    def open_results_Dialog(self, is_pneu):
+    # A function that receives tuple_response. The function returns if the detection is pneumonia and returns the exact chance.
+    def get_pneumonia_probability(self, tuple_response):
+        res = ''
+        if tuple_response == None:
+            return None, res
+        if len(tuple_response) == 2 and tuple_response[0] == True:
+            res = "Pneumonia in " + str(tuple_response[1])
+            return True, res
+        elif len(tuple_response) == 2 and tuple_response[0] == False:
+            res = "Normal in " + str(tuple_response[1])
+            return False, res
+
+    # A function that receives res_tuple_pneumonia, client. The function is called after the send curl function is finished. The function opens the results dialog.
+    def after_send_curl(self, res_tuple_pneumonia, client):
+        is_pneumonia, x_ray_detection = self.get_pneumonia_probability(res_tuple_pneumonia)
+        self.open_results_Dialog(is_pneumonia)
+
+    # A function that receives a client and detection of an x-ray. The function opens the results dialog in accordance with the detection.
+    def open_results_Dialog(self, is_pneumonia):
         self.dialog = QtWidgets.QDialog()
-        self.ui = results_Dialog.Ui_results_win()
+        self.ui = results_Dialog.Ui_Results_Dialog()
         self.ui.setupUi(self.dialog)
-        self.ui.turn(is_pneu, "x_ray")
+        self.ui.turn(is_pneumonia, "x_ray")
         self.dialog.show()
 
     #A function that receives a client. The function opens the report_a_visit dialog
     def open_report_a_visit_Dialog(self, client):
         self.dialog = QtWidgets.QDialog()
-        self.ui = report_a_visit_Dialog.Ui_Report_a_visit()
+        self.ui = report_a_visit_Dialog.Ui_Report_a_visit_Dialog()
         self.ui.setupUi(self.dialog, client, self, self.doctor_id)
         self.dialog.show()
 
-    #A function that chnage the display to the design of home page. The user exits the personal area
+    # A function that changes the display to the design of the home page. The user exits the personal area
     def sign_out(self):
         self.login_btn.show()
         self.sign_up_btn.show()
@@ -346,7 +363,7 @@ class Ui_MainWindow(object):
     # A function that receives a client. The function opens the statistical_analysis Dialog.
     def open_statistical_analysis_Dialog(self, client):
         self.dialog = QtWidgets.QDialog()
-        self.ui = statistical_analysis.Ui_statistical_analysis()
+        self.ui = statistical_analysis_Dialog.Ui_Statistical_analysis_Dialog()
         self.ui.setupUi(self.dialog)
         self.dialog.show()
         self.ui.fill_stats_table("x_ray_stats", client, self.dialog, self.doctor_id)
@@ -374,4 +391,3 @@ class Ui_MainWindow(object):
         self.menuHelp.setTitle(_translate("MainWindow", "Help"))
         self.log_out_btn.setText(_translate("MainWindow", "Log out"))
         self.detection_stats_btn.setText(_translate("MainWindow", "Statistical analysis"))
-

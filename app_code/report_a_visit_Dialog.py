@@ -10,13 +10,20 @@ import os
 from PyQt5 import QtCore, QtGui, QtWidgets
 import results_Dialog
 import send_curl
+import progress_bar
 from PIL import Image
 
-class Ui_Report_a_visit(object):
+class Ui_Report_a_visit_Dialog(object):
     can_add_photo = True
     view_mode = False
+
+    #A function that receives  MainWindow, client. The function builds the dialog with its details
     def setupUi(self, Dialog, client, main_win, doctor_id):
+        self.patient_dialog = Dialog
+        self.main_window = main_win
+        self.doctor_id= doctor_id
         self.view_mode = False
+
         Dialog.setObjectName("Dialog")
         Dialog.resize(529, 751)
         Dialog.setAutoFillBackground(False)
@@ -25,20 +32,20 @@ class Ui_Report_a_visit(object):
         self.visit_date_text = QtWidgets.QLabel(Dialog)
         self.visit_date_text.setGeometry(QtCore.QRect(20, 530, 121, 16))
         self.visit_date_text.setStyleSheet("color: rgb(255,255,255);\n"
-"font-size: 12pt")
+                                           "font-size: 12pt")
         self.visit_date_text.setObjectName("label_7")
         self.email_text = QtWidgets.QLabel(Dialog)
         self.email_text.setGeometry(QtCore.QRect(20, 210, 111, 21))
         self.email_text.setStyleSheet("color: rgb(255,255,255);\n"
-"font-size: 12pt")
+                                      "font-size: 12pt")
         self.email_text.setObjectName("label_9")
         self.lineEdit_full_name = QtWidgets.QLineEdit(Dialog)
         self.lineEdit_full_name.setGeometry(QtCore.QRect(20, 110, 391, 31))
         self.lineEdit_full_name.setAutoFillBackground(False)
         self.lineEdit_full_name.setStyleSheet("background-color: rgb(197,197,197);\n"
-                                      "color: rgb(42, 42, 42);\n"
-                                      "font-size: 12pt\n"
-                                      "")
+                                              "color: rgb(42, 42, 42);\n"
+                                              "font-size: 12pt\n"
+                                              "")
         self.lineEdit_full_name.setText("")
         self.lineEdit_full_name.setPlaceholderText("")
         self.lineEdit_full_name.setObjectName("lineEdit_1")
@@ -46,9 +53,9 @@ class Ui_Report_a_visit(object):
         self.lineEdit_id.setGeometry(QtCore.QRect(20, 170, 391, 31))
         self.lineEdit_id.setAutoFillBackground(False)
         self.lineEdit_id.setStyleSheet("background-color: rgb(197,197,197);\n"
-                                      "color: rgb(42, 42, 42);\n"
-                                      "font-size: 12pt\n"
-                                      "")
+                                       "color: rgb(42, 42, 42);\n"
+                                       "font-size: 12pt\n"
+                                       "")
         self.lineEdit_id.setInputMethodHints(QtCore.Qt.ImhSensitiveData)
         self.lineEdit_id.setText("")
         self.lineEdit_id.setPlaceholderText("")
@@ -57,8 +64,8 @@ class Ui_Report_a_visit(object):
         self.lineEdit_email.setGeometry(QtCore.QRect(20, 230, 391, 31))
         self.lineEdit_email.setAutoFillBackground(False)
         self.lineEdit_email.setStyleSheet("background-color: rgb(197,197,197);\n"
-"color: rgb(42, 42, 42);\n"
-"font-size: 12pt")
+                                          "color: rgb(42, 42, 42);\n"
+                                          "font-size: 12pt")
         self.lineEdit_email.setInputMethodHints(QtCore.Qt.ImhSensitiveData)
         self.lineEdit_email.setText("")
         self.lineEdit_email.setPlaceholderText("")
@@ -66,27 +73,26 @@ class Ui_Report_a_visit(object):
         self.add_patient_heading_text = QtWidgets.QLabel(Dialog)
         self.add_patient_heading_text.setGeometry(QtCore.QRect(20, 10, 331, 71))
         self.add_patient_heading_text.setStyleSheet("background-color: rgb(54,54,54);\n"
-"color: rgb(255, 255, 255);\n"
-"font: 75 28pt \"MS Shell Dlg 2\";")
+                                                    "color: rgb(255, 255, 255);\n"
+                                                    "font: 75 28pt \"MS Shell Dlg 2\";")
         self.add_patient_heading_text.setObjectName("label_3")
         self.watch_patient_heading_text = QtWidgets.QLabel(Dialog)
         self.watch_patient_heading_text.setGeometry(QtCore.QRect(20, 10, 331, 71))
         self.watch_patient_heading_text.setStyleSheet("background-color: rgb(54,54,54);\n"
-                                                    "color: rgb(255, 255, 255);\n"
-                                                    "font: 75 28pt \"MS Shell Dlg 2\";")
+                                                      "color: rgb(255, 255, 255);\n"
+                                                      "font: 75 28pt \"MS Shell Dlg 2\";")
         self.watch_patient_heading_text.setObjectName("label_3")
         self.add_patient_heading_text.raise_()
         self.id_text = QtWidgets.QLabel(Dialog)
         self.id_text.setGeometry(QtCore.QRect(20, 150, 111, 16))
         self.id_text.setStyleSheet("color: rgb(255,255,255);\n"
-"font-size: 12pt")
+                                   "font-size: 12pt")
         self.id_text.setObjectName("label_5")
         self.description_text = QtWidgets.QLabel(Dialog)
         self.description_text.setGeometry(QtCore.QRect(20, 390, 181, 16))
         self.description_text.setStyleSheet("color: rgb(255,255,255);\n"
-"font-size: 12pt")
+                                            "font-size: 12pt")
         self.description_text.setObjectName("label_8")
-
 
         self.full_name_text = QtWidgets.QLabel(Dialog)
         self.full_name_text.setGeometry(QtCore.QRect(20, 90, 191, 16))
@@ -94,92 +100,93 @@ class Ui_Report_a_visit(object):
         font.setPointSize(12)
         self.full_name_text.setFont(font)
         self.full_name_text.setStyleSheet("color: rgb(255,255,255);\n"
-"font-size: 12pt")
+                                          "font-size: 12pt")
         self.full_name_text.setObjectName("label_4")
         self.description_textEdit = QtWidgets.QTextEdit(Dialog)
         self.description_textEdit.setGeometry(QtCore.QRect(20, 410, 491, 111))
         self.description_textEdit.setStyleSheet("background-color: rgb(197,197,197);\n"
-"color: rgb(42, 42, 42);\n"
-"font-size: 12pt")
+                                                "color: rgb(42, 42, 42);\n"
+                                                "font-size: 12pt")
         self.description_textEdit.setObjectName("textEdit")
         self.save_btn = QtWidgets.QPushButton(Dialog)
         self.save_btn.setGeometry(QtCore.QRect(20, 700, 131, 31))
         self.save_btn.setStyleSheet("background-color: rgb(14, 154, 175);\n"
-"color: rgb(255,255,255);\n"
-"font-size: 18pt\n"
-"")
+                                    "color: rgb(255,255,255);\n"
+                                    "font-size: 18pt\n"
+                                    "")
         self.save_btn.setObjectName("pushButton_2")
         self.x_ray_text = QtWidgets.QLabel(Dialog)
         self.x_ray_text.setGeometry(QtCore.QRect(20, 600, 171, 16))
         self.x_ray_text.setStyleSheet("color: rgb(255,255,255);\n"
-"font-size: 12pt")
+                                      "font-size: 12pt")
         self.x_ray_text.setObjectName("label_10")
         self.birth_dateEdit = QtWidgets.QDateEdit(Dialog, calendarPopup=True)
         self.birth_dateEdit.setGeometry(QtCore.QRect(20, 350, 171, 31))
         self.birth_dateEdit.setStyleSheet("background-color: rgb(197,197,197);\n"
-"color: rgb(42, 42, 42);\n"
-"font-size: 12pt")
+                                          "color: rgb(42, 42, 42);\n"
+                                          "font-size: 12pt")
         self.birth_dateEdit.setObjectName("dateEdit")
         self.visit_dateEdit = QtWidgets.QDateEdit(Dialog, calendarPopup=True)
         self.visit_dateEdit.setGeometry(QtCore.QRect(20, 550, 171, 31))
         self.visit_dateEdit.setStyleSheet("background-color: rgb(197,197,197);\n"
-"color: rgb(42, 42, 42);\n"
-"font-size: 12pt")
+                                          "color: rgb(42, 42, 42);\n"
+                                          "font-size: 12pt")
         self.visit_dateEdit.setObjectName("dateEdit_2")
         self.lineEdit_photo_path = QtWidgets.QLineEdit(Dialog)
         self.lineEdit_photo_path.setGeometry(QtCore.QRect(20, 630, 491, 31))
         self.lineEdit_photo_path.setAutoFillBackground(False)
         self.lineEdit_photo_path.setStyleSheet("background-color: rgb(197,197,197);\n"
-"color: rgb(42, 42, 42);\n"
-"font-size: 12pt")
+                                               "color: rgb(42, 42, 42);\n"
+                                               "font-size: 12pt")
         self.lineEdit_photo_path.setInputMethodHints(QtCore.Qt.ImhSensitiveData)
         self.lineEdit_photo_path.setText("")
         self.lineEdit_photo_path.setPlaceholderText("")
         self.lineEdit_photo_path.setObjectName("lineEdit_4")
+        self.lineEdit_photo_path.setEnabled(True)
         self.fill_fields_text = QtWidgets.QLabel(Dialog)
         self.fill_fields_text.setGeometry(QtCore.QRect(20, 670, 221, 21))
         self.fill_fields_text.setStyleSheet("background-color: rgb(54,54,54);\n"
-"color: rgb(255, 255, 255);\n"
-"font: 75 12pt \"MS Shell Dlg 2\";")
+                                            "color: rgb(255, 255, 255);\n"
+                                            "font: 75 12pt \"MS Shell Dlg 2\";")
         self.fill_fields_text.setObjectName("label_11")
         self.birth_date_text = QtWidgets.QLabel(Dialog)
         self.birth_date_text.setGeometry(QtCore.QRect(20, 330, 121, 16))
         self.birth_date_text.setStyleSheet("color: rgb(255,255,255);\n"
-"font-size: 12pt")
+                                           "font-size: 12pt")
         self.birth_date_text.setObjectName("label_12")
         self.gender_text = QtWidgets.QLabel(Dialog)
         self.gender_text.setGeometry(QtCore.QRect(20, 270, 111, 21))
         self.gender_text.setStyleSheet("color: rgb(255,255,255);\n"
-"font-size: 12pt")
+                                       "font-size: 12pt")
         self.gender_text.setObjectName("label_13")
 
         self.comboBox = QtWidgets.QComboBox(Dialog)
         self.comboBox.setGeometry(QtCore.QRect(20, 290, 101, 31))
         self.comboBox.setStyleSheet("background-color: rgb(197,197,197);\n"
-"color: rgb(42, 42, 42);\n"
-"font-size: 12pt")
+                                    "color: rgb(42, 42, 42);\n"
+                                    "font-size: 12pt")
         self.comboBox.setObjectName("comboBox")
         self.comboBox.addItem("")
         self.comboBox.addItem("")
         self.add_photo_btn = QtWidgets.QPushButton(Dialog)
         self.add_photo_btn.setGeometry(QtCore.QRect(190, 600, 61, 21))
         self.add_photo_btn.setStyleSheet("background-color: rgb(14, 154, 175);\n"
-"color: rgb(255,255,255);\n"
-"font-size: 12pt\n"
-"")
+                                         "color: rgb(255,255,255);\n"
+                                         "font-size: 12pt\n"
+                                         "")
         self.add_photo_btn.setObjectName("pushButton_3")
         self.invalid_id_text = QtWidgets.QLabel(Dialog)
         self.invalid_id_text.setGeometry(QtCore.QRect(20, 670, 221, 21))
         self.invalid_id_text.setStyleSheet("background-color: rgb(54,54,54);\n"
-                                    "color: rgb(255, 255, 255);\n"
-                                    "font: 75 12pt \"MS Shell Dlg 2\";")
+                                           "color: rgb(255, 255, 255);\n"
+                                           "font: 75 12pt \"MS Shell Dlg 2\";")
         self.invalid_id_text.setObjectName("label_1")
         self.invalid_id_text.hide()
         self.invalid_email_text = QtWidgets.QLabel(Dialog)
         self.invalid_email_text.setGeometry(QtCore.QRect(20, 670, 221, 21))
         self.invalid_email_text.setStyleSheet("background-color: rgb(54,54,54);\n"
-                                   "color: rgb(255, 255, 255);\n"
-                                   "font: 75 12pt \"MS Shell Dlg 2\";")
+                                              "color: rgb(255, 255, 255);\n"
+                                              "font: 75 12pt \"MS Shell Dlg 2\";")
         self.invalid_email_text.setObjectName("label_2")
         self.invalid_email_text.hide()
         self.birth_dateEdit.setDisplayFormat("dd-MM-yyyy")
@@ -191,32 +198,28 @@ class Ui_Report_a_visit(object):
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
-        self.add_photo_btn.clicked.connect(lambda: self.select_photo(main_win))
-        self.save_btn.clicked.connect(lambda: self.report(Dialog, client, main_win, doctor_id))
+        self.add_photo_btn.clicked.connect(lambda: self.select_X_ray(main_win))
+        self.save_btn.clicked.connect(lambda: self.handle_save_btn_click(client))
 
-    # A function that receives Dialog, client, main_win, doctor_id. The function gets the fields from the lines, does a validation, and send the details of the patient to the server. If an x-ray was uploaded the function would send it to the web server. The function will close the Dialog at the end of the function.
-    def report(self, Dialog, client, main_win, doctor_id):
+    #A function that receives client. The function gets the fields from the lines and does a validation. The function checks if x_ray_detection is necessary. If yes, the function calls the worker and the progress bar. Id not, the function saves the patient's details.
+    def handle_save_btn_click(self, client):
         full_name = self.lineEdit_full_name.text()
-        patient_id = self.lineEdit_id.text()
+        ID = self.lineEdit_id.text()
         email = self.lineEdit_email.text()
-        gender = self.comboBox.currentText()
-        birth_date = self.birth_dateEdit.date()
-        birth_date = str(str(birth_date.toPyDate()))
         case_description = self.description_textEdit.toPlainText()
-        visit_date = self.visit_dateEdit.date()
-        visit_date = str(str(visit_date.toPyDate()))
+
         # checks if all the fields were filled
-        if full_name == '' or patient_id  == '' or email == '' or case_description == '':
+        if full_name == '' or ID == '' or email == '' or case_description == '':
             self.fill_fields_text.show()
             self.fill_fields_text.raise_()
             return
         # checks: if the length of the id is valid, if the string contains only number and if the id is someome's else
-        if len(patient_id) != 9 or not patient_id.isnumeric():
+        if len(ID) != 9 or not ID.isnumeric():
             self.invalid_id_text.show()
             self.invalid_id_text.raise_()
             return
         if not self.view_mode:
-            if not self.check_ID(client, patient_id, doctor_id):
+            if not self.check_ID(client, ID, self.doctor_id):
                 self.invalid_id_text.show()
                 self.invalid_id_text.raise_()
                 return
@@ -224,65 +227,91 @@ class Ui_Report_a_visit(object):
             self.invalid_email_text.show()
             self.invalid_email_text.raise_()
             return
-        photo_path = self.lineEdit_photo_path.text()
-        x_ray_detection = ''
-        show_results = True
-        try:
-            if photo_path != '' and not self.can_add_photo:
-                show_results = False
-                x_ray_detection = photo_path
-            if photo_path != '' and self.can_add_photo:
-                self.can_add_photo = False
-                x_ray_detection = send_curl.send_curl(photo_path)
-                # Open the image file and create a thumbnail
-                self.resize_and_save_photo(photo_path, patient_id)
-                if show_results and not self.can_add_photo:
-                    self.open_results_Dialog()
-                    split_x_ray_detection = x_ray_detection.split()
-                    is_pneu = True
-                    if split_x_ray_detection[0] == 'normal':
-                        is_pneu = False
-                    if self.view_mode:
-                        self.ui.turn(is_pneu, "edit")
-                    else:
-                        self.ui.turn(is_pneu, "add")
-            if client.add_patient(full_name, patient_id, email, gender, birth_date, case_description, visit_date, x_ray_detection, doctor_id):
-                main_win.fill_table(client)
-                Dialog.close()
-        except Exception as e:
-            None
 
-    #A function that receives a photo path and a patient_IDpatient_id. The functions resizes the image and save it into "x_ray_stats" folder.
-    def resize_and_save_photo(self, photo_path, patient_id):
+        photo_path = self.lineEdit_photo_path.text()
+        parameters_tuple = (photo_path, True)
+
+        if self.main_window.the_app_config.is_using_debug_values():
+            parameters_tuple = (self.main_window.the_app_config.get_string_value('debug', 'xray_path'), True)
+
+        if parameters_tuple[0] == '' or not self.can_add_photo:
+            self.save_patient(None, client)
+        else:
+            print(parameters_tuple)
+            self.worker_dialog = QtWidgets.QDialog()
+            self.ui = progress_bar.Worker_Dialog(self.worker_dialog)
+            self.ui.setupUi(self.worker_dialog, client, send_curl.send_curl, parameters_tuple, self.save_patient)
+            self.worker_dialog.show()
+
+    # A function that receives res_tuple_pneumonia, client. The function gets the fields from the lines and sends the details of the patient to the server. If an x-ray was uploaded the function would send it to the web server. The function will close the Dialog at the end of the function.
+    def save_patient(self, res_tuple_pneumonia, client):
+        full_name = self.lineEdit_full_name.text()
+        ID = self.lineEdit_id.text()
+        email = self.lineEdit_email.text()
+        birth_date = self.birth_dateEdit.date()
+        birth_date = str(str(birth_date.toPyDate()))
+        gender = self.comboBox.currentText()
+        visit_date = self.visit_dateEdit.date()
+        visit_date = str(str(visit_date.toPyDate()))
+        case_description = self.description_textEdit.toPlainText()
+        photo_path = self.lineEdit_photo_path.text()
+
+        is_pneumonia, x_ray_detection = self.main_window.get_pneumonia_probability(res_tuple_pneumonia)
+        show_results = True
+
+        if photo_path != '' and not self.can_add_photo:
+            x_ray_detection = photo_path
+            show_results = False
+
+        if photo_path != '' and self.can_add_photo:
+            self.can_add_photo = False
+            self.resize_and_save_photo(photo_path, ID)
+
+        client.add_patient(full_name, ID, email, gender, birth_date, case_description, visit_date, str(x_ray_detection), self.doctor_id)
+        if show_results and not self.can_add_photo:
+            self.open_results_Dialog()
+            if is_pneumonia is not None:
+                if self.view_mode:
+                    self.ui.turn(is_pneumonia, "edit")
+                else:
+                    self.ui.turn(is_pneumonia, "add")
+        self.main_window.clear_table()
+        self.main_window.fill_table(client)
+
+        self.patient_dialog.close()
+
+    # A function that receives a photo path and patient_id. The function resizes the image and saves it in the "x_ray_stats" folder.
+    def resize_and_save_photo(self, photo_path, ID):
         img = Image.open(photo_path)
         img.thumbnail((150, 100))
         os.makedirs('x_ray_stats', exist_ok=True)
         image_path = "x_ray_stats"
-        img.save(f"{image_path}/" + patient_id + ".jpeg")
+        img.save(f"{image_path}/" + ID + ".jpeg")
 
-    #A function that receives a photo path, sends an HTTP request to the web server. The function returns the detectiion of the photo by the AI model.
+    # A function that receives a photo path, and sends an HTTP request to the web server. The function returns the detection of the photo by the AI model.
     def send_curl(self, photo_path):
         return send_curl.send_curl(photo_path)
 
     #A function that receives client, ID, doctor_id. The
-    def check_ID(self, client, patient_id, doctor_id):
+    def check_ID(self, client, ID, doctor_id):
         patient_list = client.get_patients_list(doctor_id)
         if patient_list is None:
-            return
+            return True
         for row in patient_list:
             row = row.split('#')
-            if row[1] == patient_id:
+            if row[1] == ID:
                 return False
         return True
-    #A function that  opens the results dialog
+
+    #A function that opens the results dialog
     def open_results_Dialog(self):
         self.dialog = QtWidgets.QDialog()
-        self.ui = results_Dialog.Ui_results_win()
+        self.ui = results_Dialog.Ui_Results_Dialog()
         self.ui.setupUi(self.dialog)
         self.dialog.show()
 
-    #A function that receives the main_window. The function call to anouther function that ask the user to choose x-ray photo from the computer. The function updates the lineEdit of the photo path with the path the user selected.
-    def select_photo(self, main_win):
+    # A function that receives the main_window. The function call to anouther function that ask the user to choose x-ray photo from the computer. The function updates the lineEdit of the photo path with the path the user selected.
+    def select_X_ray(self, main_win):
         _translate = QtCore.QCoreApplication.translate
         photo_path = main_win.get_file_name()
         self.lineEdit_photo_path.setText(_translate("Dialog", photo_path))
@@ -312,11 +341,11 @@ class Ui_Report_a_visit(object):
         visit_date = self.from_string_to_date(spllited_patient[6].split('-'))
         self.visit_dateEdit.setDate(visit_date)
         if len(spllited_patient) > 8:
-            self.can_add_photo = False
-            self.birth_date_text.raise_()
-            self.add_photo_btn.setEnabled(False)
-            self.lineEdit_photo_path.setText(_translate("Dialog", spllited_patient[8]))
-            self.lineEdit_photo_path.setEnabled(False)
+                self.can_add_photo = False
+                self.birth_date_text.raise_()
+                self.add_photo_btn.setEnabled(False)
+                self.lineEdit_photo_path.setEnabled(False)
+                self.lineEdit_photo_path.setText(_translate("Dialog", spllited_patient[8]))
 
     #A function that receives a date(string) spllited in a list. The function returns the date as a QDate type.
     def from_string_to_date(self, spllited_date):
@@ -344,5 +373,3 @@ class Ui_Report_a_visit(object):
         self.add_photo_btn.setText(_translate("Dialog", "add"))
         self.invalid_id_text.setText(_translate("Dialog", "please enter a valid ID!"))
         self.invalid_email_text.setText(_translate("Dialog", "please enter a valid email!"))
-
-
