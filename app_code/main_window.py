@@ -211,7 +211,7 @@ class Ui_MainWindow(object):
     #The function opens the project book from a URL.
     def open_project_book(self):
         #webbrowser.open("https://docs.google.com/document/d/1xoxYSfxPT1LbkVRRw4hjJANpfWASCB1bWV0eGYCthco/edit?usp=sharing")
-        path = 'C:/Users/mgmaa/Downloads/DeTech.pdf'
+        path = 'DeTech.pdf'
         os.system(path)
 
     #A function that always updates the row in the table that is selected
