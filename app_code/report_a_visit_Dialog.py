@@ -116,10 +116,16 @@ class Ui_Report_a_visit_Dialog(object):
                                     "")
         self.save_btn.setObjectName("pushButton_2")
         self.x_ray_text = QtWidgets.QLabel(Dialog)
-        self.x_ray_text.setGeometry(QtCore.QRect(20, 600, 171, 16))
+        self.x_ray_text.setGeometry(QtCore.QRect(20, 600, 171, 22))
         self.x_ray_text.setStyleSheet("color: rgb(255,255,255);\n"
                                       "font-size: 12pt")
         self.x_ray_text.setObjectName("label_10")
+        self.uploaded_text = QtWidgets.QLabel(Dialog)
+        self.uploaded_text.setGeometry(QtCore.QRect(20, 600, 321, 22))
+        self.uploaded_text.setStyleSheet("color: rgb(255,255,255);\n"
+                                      "font-size: 12pt")
+        self.uploaded_text.setObjectName("label_10")
+        self.uploaded_text.hide()
         self.birth_dateEdit = QtWidgets.QDateEdit(Dialog, calendarPopup=True)
         self.birth_dateEdit.setGeometry(QtCore.QRect(20, 350, 171, 31))
         self.birth_dateEdit.setStyleSheet("background-color: rgb(197,197,197);\n"
@@ -270,11 +276,13 @@ class Ui_Report_a_visit_Dialog(object):
         client.add_patient(full_name, ID, email, gender, birth_date, case_description, visit_date, str(x_ray_detection), self.doctor_id)
         if show_results and not self.can_add_photo:
             self.open_results_Dialog()
+            spllited_detection = x_ray_detection.split()
+            accuracy = spllited_detection[2]
             if is_pneumonia is not None:
                 if self.view_mode:
-                    self.ui.turn(is_pneumonia, "edit")
+                    self.ui.turn(is_pneumonia, accuracy, "edit")
                 else:
-                    self.ui.turn(is_pneumonia, "add")
+                    self.ui.turn(is_pneumonia, accuracy, "add")
         self.main_window.clear_table()
         self.main_window.fill_table(client)
 
@@ -344,8 +352,12 @@ class Ui_Report_a_visit_Dialog(object):
                 self.can_add_photo = False
                 self.birth_date_text.raise_()
                 self.add_photo_btn.setEnabled(False)
+                self.add_photo_btn.hide()
+                self.uploaded_text.show()
+                self.uploaded_text.raise_()
                 self.lineEdit_photo_path.setEnabled(False)
-                self.lineEdit_photo_path.setText(_translate("Dialog", spllited_patient[8]))
+                results_text = spllited_patient[8] + " accuracy"
+                self.lineEdit_photo_path.setText(_translate("Dialog", results_text))
 
     #A function that receives a date(string) spllited in a list. The function returns the date as a QDate type.
     def from_string_to_date(self, spllited_date):
@@ -365,6 +377,7 @@ class Ui_Report_a_visit_Dialog(object):
         self.full_name_text.setText(_translate("Dialog", "Full name:"))
         self.save_btn.setText(_translate("Dialog", "Save"))
         self.x_ray_text.setText(_translate("Dialog", "X-ray photo (Optional):"))
+        self.uploaded_text.setText(_translate("Dialog", "X-ray was already uploaded, the results:"))
         self.fill_fields_text.setText(_translate("Dialog", "please fill all the fields!"))
         self.birth_date_text.setText(_translate("Dialog", "Birth date:"))
         self.gender_text.setText(_translate("Dialog", "Gender:"))

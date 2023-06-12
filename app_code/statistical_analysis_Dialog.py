@@ -94,13 +94,13 @@ class Ui_Statistical_analysis_Dialog(object):
                     count += 1
                     break
         _translate = QtCore.QCoreApplication.translate
-        self.textEdit.setText(_translate("Dialog", "Below are presented some statistical data regarding the x-rays you uploaded to the system.\r\nX-rays uploaded: " + str(self.tableWidget.rowCount()) + "\r\nX-rays that were detected ad pneumonia: " + self.count_pneu_among_table()+ "\r\nOverall accuracy: " +self.check_accuracy()))
+        self.textEdit.setText(_translate("Dialog", "Below are presented some statistical data regarding the x-rays you uploaded to the system.\r\nX-rays uploaded: " + str(self.tableWidget.rowCount()) + "\r\nX-rays that were detected as pneumonia: " + self.count_pneu_among_table()+ "\r\nOverall accuracy: " +self.check_accuracy()))
 
     # A function that counts the number of x-rays that were detected as pneumonia
     def count_pneu_among_table(self):
         count = 0
         for row in range(self.tableWidget.rowCount()):
-            if self.tableWidget.item(row, 1).text() == 'pneumonia':
+            if self.tableWidget.item(row, 1).text() == 'Pneumonia':
                 count += 1
         return str(count)
 
@@ -111,7 +111,10 @@ class Ui_Statistical_analysis_Dialog(object):
             result = self.tableWidget.item(row, 2).text()
             result = result[:-1]
             sum += float(result)
-        sret = str(sum/self.tableWidget.rowCount())
+        if self.tableWidget.rowCount() != 0:
+            sret = str(sum/self.tableWidget.rowCount())
+        else:
+            sret = str(0)
         return sret[:4] + "%"
 
     def retranslateUi(self, Dialog):

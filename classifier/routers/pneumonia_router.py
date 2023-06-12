@@ -6,7 +6,7 @@ from PIL import Image
 #from keras.preprocessing.image import img_to_array
 from keras_preprocessing.image import img_to_array
 
-from classifier.train import Train
+from classifier.AI_model import AI_model
 
 router = APIRouter()
 
@@ -32,7 +32,7 @@ def pnuemonia_router(image_file: bytes = File(...)):
     graph = tf.compat.v1.get_default_graph()
 
     with graph.as_default():
-        model = Train().define_model()
+        model = AI_model().define_model()
         model.load_weights('classifier/models/weights.h5')     
         prediction = model.predict(image)
         #prediction = model.predict_proba(image)

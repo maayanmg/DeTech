@@ -82,11 +82,34 @@ class Ui_Results_Dialog(object):
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
     # A function that receives a detection of an x-ray and a reason to call the results dialog. The function changes the display of the dialog according to these parameters.
-    def turn(self, is_pneumonia, call_reason):
+    def turn(self, is_pneumonia, accuracy,call_reason):
+        _translate = QtCore.QCoreApplication.translate
         if is_pneumonia:
+            self.pneumonia_text.setHtml(_translate("Dialog",
+                                                   "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                                   "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                                   "p, li { white-space: pre-wrap; }\n"
+                                                   "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:16pt; font-weight:400; font-style:normal;\">\n"
+                                                   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Our detection is that your patient <span style=\" font-weight:600;\">is suffering</span> from pneumania in " + accuracy + " accuracy.</p>\n"
+                                                   "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+                                                   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt;\">In that case we reccomend you to make sure your diagnose is accurate and that you are giving the right treatment.</span></p>\n"
+                                                   "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt;\"><br /></p>\n"
+                                                   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">We want to remind you that the results</span><span style=\" font-size:12pt; font-weight:600;\"> are not</span><span style=\" font-size:12pt;\"> accurate in 100%.</span></p>\n"
+                                                   "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">The tool is an </span><span style=\" font-size:12pt; font-weight:600;\">advisory tool only</span><span style=\" font-size:12pt;\"> and is not intended to replace the doctor\'s judgment.</span></p></body></html>"))
             self.pneumonia_text.show()
             self.pneumonia_text.raise_()
         else:
+            self.normal_text.setHtml(_translate("Dialog",
+                                                "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                                "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                                "p, li { white-space: pre-wrap; }\n"
+                                                "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:16pt; font-weight:400; font-style:normal;\">\n"
+                                                "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Our detection is that your patient <span style=\" font-weight:600;\">isn\'t suffering</span> from pneumania in " + accuracy + " accuracy.</p>\n"
+                                                                                                                                                                                                                                                                                                        "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt;\"><br /></p>\n"
+                                                                                                                                                                                                                                                                                                        "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt;\">In that case we reccomend you to make sure your diagnose is accurate. We reccomnd you to check if the patient is suffering from another disease</span><span style=\" font-size:12pt;\">.</span></p>\n"
+                                                                                                                                                                                                                                                                                                        "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt;\"><br /></p>\n"
+                                                                                                                                                                                                                                                                                                        "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">We want to remind you that the results</span><span style=\" font-size:12pt; font-weight:600;\"> are not</span><span style=\" font-size:12pt;\"> accurate in 100%.</span></p>\n"
+                                                                                                                                                                                                                                                                                                        "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">The tool is an </span><span style=\" font-size:12pt; font-weight:600;\">advisory tool only</span><span style=\" font-size:12pt;\"> and is not intended to replace the doctor\'s judgment.</span></p></body></html>"))
             self.normal_text.show()
             self.normal_text.raise_()
         if call_reason == "add":
@@ -106,24 +129,4 @@ class Ui_Results_Dialog(object):
         self.add_patient_heading.setText(_translate("Dialog", "Patient was added susccesfully"))
         self.edit_patient_heading.setText(_translate("Dialog", "Patient was edited susccesfully"))
         self.x_ray_uploaded_heading.setText(_translate("Dialog", "X-ray was uploaded susccesfully"))
-        self.pneumonia_text.setHtml(_translate("Dialog", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:16pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Our detection is that your patient <span style=\" font-weight:600;\">is suffering</span> from pneumania.</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt;\">In that case we reccomend you to make sure your diagnose is accurate and that you are giving the right treatment.</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">We want to remind you that the results</span><span style=\" font-size:12pt; font-weight:600;\"> are not</span><span style=\" font-size:12pt;\"> accurate in 100%.</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">The tool is an </span><span style=\" font-size:12pt; font-weight:600;\">advisory tool only</span><span style=\" font-size:12pt;\"> and is not intended to replace the doctor\'s judgment.</span></p></body></html>"))
-        self.normal_text.setHtml(_translate("Dialog", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:16pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Our detection is that your patient <span style=\" font-weight:600;\">isn\'t suffering</span> from pneumania.</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt;\">In that case we reccomend you to make sure your diagnose is accurate. We reccomnd you to check if the patient is suffering from another disease</span><span style=\" font-size:12pt;\">.</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">We want to remind you that the results</span><span style=\" font-size:12pt; font-weight:600;\"> are not</span><span style=\" font-size:12pt;\"> accurate in 100%.</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">The tool is an </span><span style=\" font-size:12pt; font-weight:600;\">advisory tool only</span><span style=\" font-size:12pt;\"> and is not intended to replace the doctor\'s judgment.</span></p></body></html>"))
         self.ok_btn.setText(_translate("Dialog", "Ok"))

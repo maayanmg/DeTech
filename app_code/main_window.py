@@ -210,7 +210,9 @@ class Ui_MainWindow(object):
 
     #The function opens the project book from a URL.
     def open_project_book(self):
-        webbrowser.open("https://docs.google.com/document/d/1xoxYSfxPT1LbkVRRw4hjJANpfWASCB1bWV0eGYCthco/edit?usp=sharing")
+        #webbrowser.open("https://docs.google.com/document/d/1xoxYSfxPT1LbkVRRw4hjJANpfWASCB1bWV0eGYCthco/edit?usp=sharing")
+        path = 'C:/Users/mgmaa/Downloads/DeTech.pdf'
+        os.system(path)
 
     #A function that always updates the row in the table that is selected
     def selected_row(self, selected):
@@ -328,14 +330,16 @@ class Ui_MainWindow(object):
     # A function that receives res_tuple_pneumonia, client. The function is called after the send curl function is finished. The function opens the results dialog.
     def after_send_curl(self, res_tuple_pneumonia, client):
         is_pneumonia, x_ray_detection = self.get_pneumonia_probability(res_tuple_pneumonia)
-        self.open_results_Dialog(is_pneumonia)
+        spllited_detection = x_ray_detection.split()
+        accuracy = spllited_detection[2]
+        self.open_results_Dialog(is_pneumonia, accuracy)
 
     # A function that receives a client and detection of an x-ray. The function opens the results dialog in accordance with the detection.
-    def open_results_Dialog(self, is_pneumonia):
+    def open_results_Dialog(self, is_pneumonia, accuracy):
         self.dialog = QtWidgets.QDialog()
         self.ui = results_Dialog.Ui_Results_Dialog()
         self.ui.setupUi(self.dialog)
-        self.ui.turn(is_pneumonia, "x_ray")
+        self.ui.turn(is_pneumonia, accuracy, "x_ray")
         self.dialog.show()
 
     #A function that receives a client. The function opens the report_a_visit dialog
