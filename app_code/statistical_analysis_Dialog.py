@@ -14,6 +14,7 @@ class Ui_Statistical_analysis_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(640, 705)
+        Dialog.setFixedSize(640, 705)
         Dialog.setModal(True)
         Dialog.setStyleSheet("background-color: rgb(54, 54, 54);")
         self.tableWidget = QtWidgets.QTableWidget(Dialog)

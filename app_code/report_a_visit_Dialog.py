@@ -26,6 +26,7 @@ class Ui_Report_a_visit_Dialog(object):
 
         Dialog.setObjectName("Dialog")
         Dialog.resize(529, 751)
+        Dialog.setFixedSize(529, 751)
         Dialog.setAutoFillBackground(False)
         Dialog.setStyleSheet("background-color: rgb(54, 54, 54);")
         Dialog.setInputMethodHints(QtCore.Qt.ImhNone)

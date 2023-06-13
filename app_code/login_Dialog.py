@@ -13,6 +13,7 @@ class Ui_Login_Dialog(object):
     def setupUi(self, Dialog, client, main_win):
         Dialog.setObjectName("Dialog")
         Dialog.resize(353, 313)
+        Dialog.setFixedSize(353, 313)
         Dialog.setStyleSheet("background-color: rgb(54, 54, 54);")
         Dialog.setModal(True)
         self.sign_in_btn = QtWidgets.QPushButton(Dialog)

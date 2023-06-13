@@ -13,6 +13,7 @@ class Ui_Sign_up_Dialog(object):
     def setupUi(self, Dialog, client, main_win):
         Dialog.setObjectName("Dialog")
         Dialog.resize(376, 489)
+        Dialog.setFixedSize(376, 489)
         Dialog.setStyleSheet("background-color: rgb(54, 54, 54);")
         self.sign_up_btn = QtWidgets.QPushButton(Dialog)
         self.sign_up_btn.setGeometry(QtCore.QRect(120, 440, 101, 41))

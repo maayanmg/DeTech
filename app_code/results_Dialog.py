@@ -13,6 +13,7 @@ class Ui_Results_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(601, 321)
+        Dialog.setFixedSize(601, 321)
         Dialog.setStyleSheet("background-color: rgb(54, 54, 54);")
         Dialog.setModal(True)
         self.add_patient_heading = QtWidgets.QLabel(Dialog)
